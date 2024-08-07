@@ -1,0 +1,34 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h1>PANTALLA LOGIN</h1>
+
+		<label>Usuario</label>
+		<input type="text" id="usuario_email">
+		
+		<label>Password</label>
+		<input type="password" id="usuario_password">
+
+		<button class="enviar">Enviar datos</button>
+
+		<script type="text/javascript">
+			const inputEmail = document.querySelector("#usuario_email");
+			const inputPassword = document.querySelector("#usuario_password");
+			const buttonEnviar = document.querySelector(".enviar");
+
+			buttonEnviar.addEventListener("click", () => {
+				fetch("/login", {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify({
+						email: inputEmail.value,
+						password: inputPassword.value
+					}),
+				});
+			});
+		</script>
+	</body>
+</html>
