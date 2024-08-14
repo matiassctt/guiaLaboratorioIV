@@ -1,13 +1,21 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const port = 3000;
 
 const rutasUsuarios = require('./routes/usuario');
 
 // MiddleWare
+app.use(session({
+  secret: 'hola', //Cambiar
+  saveUnitialized: true,
+  resave: true,
+}));
+
 app.use(express.urlencoded({
   extended: true,
 }));
+
 app.use(express.json());
 
 // Templates

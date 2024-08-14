@@ -3,11 +3,21 @@ const conx = require("../database/db");
 class UsuarioModel {
 
 	validarUsuario(email, password) {
+		return new Promise((resolve, reject) => {
+			let sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
+			conx.query(sql, [email, password], (err, results) => {
+				try {
 
-		let sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
+					if (results.length == 0) {
+						resolve(null);
+					}
 
-		conx.query(sql, [email, password], (err, results) => {
-			console.log(results);
+					resolve(results[0]);
+				} catch (error) {
+					reject(error)
+				}
+
+			});
 		});
 	}
 
