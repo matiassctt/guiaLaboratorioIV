@@ -4,11 +4,6 @@
 	<body>
 		<h1>PANTALLA LOGIN</h1>
 
-		<p>Estado del usuario <%= logeado %></p>
-		<% if (logeado) { %>
-			<h2>Ya estas logeado</h2>
-		<% } %>
-		
 		<label>Usuario</label>
 		<input type="text" id="usuario_email">
 		
@@ -39,7 +34,7 @@
 				if (data.error == 1) {
 					alert ("Usuario o contraseña incorrecta");
 				} else {
-					alert ("Login correcto");
+					location.href = "/panel/listado";
 				}
 			});
 		</script>

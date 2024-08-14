@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 
 const rutasUsuarios = require('./routes/usuario');
+const rutasPanel = require('./routes/panel');
 
 // MiddleWare
 app.use(session({
@@ -24,6 +25,7 @@ app.set('view engine', 'ejs');
 
 //Rutas
 app.use('/', rutasUsuarios);
+app.use('/', rutasPanel);
 
 app.listen(port, () => {
   console.log(`El servidor corre en el puerto ${port}`);

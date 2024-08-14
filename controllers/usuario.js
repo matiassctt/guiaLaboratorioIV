@@ -4,12 +4,7 @@ const usuarioModel = new modelUsuario();
 class UsuarioController {
 
 	mostrarFormulario (req, res) {
-
-		console.log(req.session);
-
-		res.render('panel/login', {
-			logeado: (req.session.idUsuario) ? 1 : 0
-		});
+		res.render('panel/login');
 	}
 
 	async validarFormulario (req, res) {
