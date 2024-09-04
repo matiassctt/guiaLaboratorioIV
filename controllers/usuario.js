@@ -32,6 +32,40 @@ class UsuarioController {
 			});
 		}
 	}
+
+	async verUsuarios (req, res) {
+		const usuarios = await usuarioModel.listarUsuarios();
+		res.render('panel/usuarios/listado', {
+			"users": usuarios
+		})
+	}
+
+	async verUsuario (req, res) {
+		const usuario = await usuarioModel.listarUsuario(req.params.id);
+		res.render('panel/usuarios/formulario', {
+			"user": usuario
+		})
+	}
+
+	async guardarUsuario (req, res) {
+
+		try {
+
+			const {id, nombre, email} = req.body;
+
+			await usuarioModel.guardarUsuario(id, nombre, email);
+			res.json({
+				"error": 0,
+				"mensaje": "Usuario guardado correctamente"
+			})
+		} catch (error) {
+			res.json({
+				"error": 1,
+				"mensaje": error
+			})
+		}
+	}
+
 }
 
 module.exports = UsuarioController;

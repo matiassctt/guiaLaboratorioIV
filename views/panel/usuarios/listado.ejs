@@ -1,0 +1,26 @@
+<html>
+  <head></head>
+
+  <a href="/usuarios/0">Nuevo</a>
+
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach((user) => { %>
+          <tr>
+            <td><%= user.nombre %></td>
+            <td><%= user.email %></td>
+            <td><a href="/usuarios/<%= user.id %>">Editar</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

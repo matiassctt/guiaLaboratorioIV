@@ -1,0 +1,11 @@
+<html>
+  <head></head>
+  <body>
+    <form action="/usuarios" method="post">
+      <input type="hidden" name="id" value="<%= user.id %>">
+      <input type="text" name="nombre" value="<%= user.nombre %>">
+      <input type="text" name="email" value="<%= user.email %>">
+      <input type="submit">
+    </form>
+  </body>
+</html>
