@@ -50,15 +50,16 @@ class UsuarioController {
 	async guardarUsuario (req, res) {
 
 		try {
-
 			const {id, nombre, email} = req.body;
+			const foto = "/"+req.file.path;
 
-			await usuarioModel.guardarUsuario(id, nombre, email);
+			await usuarioModel.guardarUsuario(id, nombre, email, foto);
 			res.json({
 				"error": 0,
 				"mensaje": "Usuario guardado correctamente"
 			})
 		} catch (error) {
+			console.log(error);
 			res.json({
 				"error": 1,
 				"mensaje": error

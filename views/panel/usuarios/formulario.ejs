@@ -1,11 +1,43 @@
 <html>
   <head></head>
   <body>
-    <form action="/usuarios" method="post">
+    <!--<form action="/usuarios" method="post" enctype="multipart/form-data">-->
       <input type="hidden" name="id" value="<%= user.id %>">
       <input type="text" name="nombre" value="<%= user.nombre %>">
       <input type="text" name="email" value="<%= user.email %>">
+      <input type="file" name="foto" />
+      <img src="<%= user.foto %>">
+      <button>Enviar</button>
+      <!--
       <input type="submit">
-    </form>
+    </form>-->
   </body>
 </html>
+
+<script>
+  const inputId = document.querySelector('input[name="id"]');
+  const inputNombre = document.querySelector('input[name="nombre"]');
+  const inputEmail = document.querySelector('input[name="email"]');
+  const inputFoto = document.querySelector('input[name="foto"]');
+  const button = document.querySelector('button');
+
+  button.addEventListener("click", async () => {
+    var fd = new FormData();
+    fd.append('nombre', inputNombre.value);
+    fd.append('email', inputEmail.value);
+    fd.append('id', inputId.value);
+    fd.append('foto', inputFoto.files[0]);
+  
+    const ajax = await fetch('/usuarios', {
+      method: 'POST',
+      body: fd,
+    });
+
+    const resultado = await ajax.json();
+    
+    if (resultado.error == 0) {
+      location.href = "/usuarios";
+    }
+  });
+
+</script>

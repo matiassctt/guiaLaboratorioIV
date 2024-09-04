@@ -29,12 +29,12 @@ class UsuarioModel {
 		});
 	}
 
-	guardarUsuario(id, nombre, email) {
+	guardarUsuario(id, nombre, email, foto) {
 		return new Promise((resolve, reject) => {
 
 			if (id == 0) {				
-				let sql = `INSERT INTO usuarios (nombre, email) VALUES (?, ?)`;
-				conx.query(sql, [nombre, email], (err, results) => {
+				let sql = `INSERT INTO usuarios (nombre, email, foto) VALUES (?, ?, ?)`;
+				conx.query(sql, [nombre, email, foto], (err, results) => {
 					try {
 						if (err !== null) reject(err);
 						resolve(results.insertId);
@@ -43,14 +43,13 @@ class UsuarioModel {
 					}
 				});
 			} else {
-				let sql = `UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?`;
-				conx.query(sql, [nombre, email, id], (err, results) => {
+				let sql = `UPDATE usuarios SET nombre = ?, email = ?, foto = ? WHERE id = ?`;
+				conx.query(sql, [nombre, email, foto, id], (err, results) => {
 					try {
-
 						if (err !== null) reject(err);
-
 						resolve(id);
 					} catch (error) {
+						console.log(err);
 						reject(error)
 					}
 				});
